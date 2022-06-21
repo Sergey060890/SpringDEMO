@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+    <context:annotation-config/>
+    <!--        default-autowire="constructor">-->
+
+    <context:component-scan base-package="org.example.annotation"/>
+
+    <bean id="address" class="org.example.autowired.AddressHome"
+          p:id="1" p:city="Madrid" p:street="Concha spin" p:house="3">
+    </bean>
+
+    <bean id="address2" class="org.example.autowired.Address" primary="true"
+          p:id="1" p:city="Berlin" p:street="FridrichStrasse" p:house="10">
+    </bean>
+
+    <bean id="address22" class="org.example.autowired.Address" primary="true"
+          p:id="1" p:city="Berlin" p:street="FridrichStrasse" p:house="100">
+    </bean>
+<!--    <bean id="address2" class="org.example.autowired.Address" primary="true"-->
+<!--          p:id="1" p:city="Berlin" p:street="FridrichStrasse" p:house="10">-->
+<!--        <qualifier value="address777"/>-->
+<!--    </bean>-->
+
+    <bean id="person" class="org.example.autowired.Person" scope="prototype"
+          p:id="1" p:name="Karim" p:surname="Benzema" >
+    </bean>
+
+<!--    <bean id="person" class="org.example.autowired.Person" scope="prototype"-->
+<!--          p:id="1" p:name="Karim" p:surname="Benzema" autowire="constructor" >-->
+<!--    </bean>-->
+
+
+    <context:component-scan base-package="java">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <context:annotation-config></context:annotation-config>
+
+<!--    <bean id="emailSender" class="org.example.EmailSender">-->
+<!--        <property name="address" value="Minsk"/>-->
+<!--        </bean>-->
+<!--    <bean id="serviceSender" class="org.example.SenderService">-->
+<!--        <property name="sender">-->
+<!--            <bean class="org.example.EmailSender"/>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    <bean id="serviceSender" class="org.example.SenderService"-->
+<!--       p:sender-ref="emailSender">-->
+<!--    </bean>-->
+
+<!--    <bean id="serviceSender2" class="org.example.SenderService">-->
+<!--        <property name="sender" ref="emailSender"/>-->
+<!--    </bean>-->
+
+<!--    <bean id="constructorBean" class="org.example.ConstructorBean" scope="prototype">-->
+<!--        <constructor-arg name="name" value="Valera"/>-->
+<!--        <property name="stringList">-->
+<!--            <list>-->
+<!--                <value>#{emailSender.getAddress()}</value>-->
+<!--                <value>6</value>-->
+<!--                <value>7</value>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+
+<!--    <bean id="constructorBean" class="org.example.ConstructorBean" scope="prototype">-->
+<!--        <constructor-arg name="name" value="Valera"/>-->
+<!--        <property name="map">-->
+<!--            <map>-->
+<!--                <entry key="1" value="map1"/>-->
+<!--                <entry key="2" value="map2"/>-->
+<!--                <entry key="3" value="map3"/>-->
+<!--            </map>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    <bean id="constructorBean" class="org.example.ConstructorBean" scope="prototype">-->
+<!--        <constructor-arg name="name" value="Valera"/>-->
+<!--        <property name="map">-->
+<!--            <null/>-->
+<!--        </property>-->
+<!--    </bean>-->
+
+<!--    <bean id="notifier" class="org.example.aop.Notification"/>-->
+<!--    <aop:config>-->
+<!--        <aop:aspect id="note" ref="notifier">-->
+<!--            <aop:pointcut id="advice" expression="execution(* *.send(*))"/>-->
+<!--            <aop:after method="notifyAfter" pointcut-ref ="advice"/>-->
+<!--            <aop:before method="notifyBefore" pointcut-ref="advice"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+<!--    <bean id="mazCargo" class="org.example.MazCargo"/>-->
+<!--    <bean id="gazelCargo" class="org.example.GazelCargo"/>-->
+<!--    <bean id="cargoServiceMaz" class="org.example.CargoService">-->
+<!--        <property name="cargo" ref="mazCargo"/>-->
+<!--    </bean>-->
+<!--    <bean id="cargoServiceGazel" class="org.example.CargoService">-->
+<!--        <property name="cargo" ref="gazelCargo"/>-->
+<!--    </bean>-->
+
+<!--    <aop:config>-->
+<!--        <aop:aspect id="note1" ref="notifier">-->
+<!--            <aop:pointcut id="advice1" expression="execution(* *.send(*))"/>-->
+<!--            <aop:after method="notifyAfter" pointcut-ref ="advice1"/>-->
+<!--            <aop:before method="notifyBefore" pointcut-ref="advice1"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+
+</beans>
